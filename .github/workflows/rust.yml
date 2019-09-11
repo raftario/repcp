@@ -9,10 +9,10 @@ jobs:
     steps:
     - name: Install and/or update Rust (Unix)
       if: matrix.os != 'windows-latest'
-      run: curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y && rustup self update
+      run: curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y && rustup self update && rustup update
     - name: Install and/or update Rust (Windows)
       if: matrix.os == 'windows-latest'
-      run: curl -sSf -o rustup-init.exe https://win.rustup.rs/ && rustup-init.exe -y && rustup self update
+      run: curl -sSf -o rustup-init.exe https://win.rustup.rs/ && rustup-init.exe -y && rustup self update && rustup udpate
   test:
     needs: install
     runs-on: ${{ matrix.os }}
