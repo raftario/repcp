@@ -2,7 +2,6 @@ name: Rust
 on: [push, pull_request]
 jobs:
   test:
-    needs: install
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
@@ -15,7 +14,6 @@ jobs:
     - name: Run tests
       run: cargo test --verbose
   check:
-    needs: test
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
