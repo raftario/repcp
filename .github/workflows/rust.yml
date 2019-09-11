@@ -1,18 +1,6 @@
 name: Rust
 on: [push, pull_request]
 jobs:
-  install:
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os: [ubuntu-latest, windows-latest, macOS-latest]
-    steps:
-    - name: Install and/or update Rust (Unix)
-      if: matrix.os != 'windows-latest'
-      run: curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y && source $HOME/.cargo/env && rustup self update && rustup update
-    - name: Install and/or update Rust (Windows)
-      if: matrix.os == 'windows-latest'
-      run: curl -sSf -o rustup-init.exe https://win.rustup.rs/ && rustup-init.exe -y && rustup self update && rustup update
   test:
     needs: install
     runs-on: ${{ matrix.os }}
@@ -23,6 +11,7 @@ jobs:
     - uses: actions/checkout@v1
       with:
         fetch-depth: 1
+    - uses: raftario/setup-rust-action@master
     - name: Run tests
       run: cargo test --verbose
   check:
@@ -35,6 +24,7 @@ jobs:
     - uses: actions/checkout@v1
       with:
         fetch-depth: 1
+    - uses: raftario/setup-rust-action@master
     - name: Check for clippy warnings
       if: github.event_name == 'pull_request'
       run: rustup component add clippy && cargo clippy -- -D warnings
