@@ -7,6 +7,6 @@ license = "MIT OR Apache-2.0"
 homepage = "https://github.com/raftario/repcp"
 repository = "https://github.com/raftario/repcp"
 readme = "README.md"
-description = "Randomized Encrypted P2P Chat Protocol"
+description = "Randomized Encrypted P2P Communication Protocol"
 
 [dependencies]
