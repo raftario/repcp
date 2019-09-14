@@ -23,10 +23,13 @@ jobs:
       with:
         fetch-depth: 1
     - uses: raftario/setup-rust-action@releases/v1
+      with:
+        install-rustfmt: true
+        install-clippy: true
     - name: Check for clippy warnings
       if: github.event_name == 'pull_request'
-      run: rustup component add clippy && cargo clippy -- -D warnings
+      run: cargo clippy -- -D warnings
     - name: Check formatting
       if: github.event_name == 'pull_request'
-      run: rustup component add rustfmt && cargo fmt -v -- --check
+      run: cargo fmt -v -- --check
       
