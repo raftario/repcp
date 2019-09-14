@@ -10,6 +10,6 @@ jobs:
     - uses: actions/checkout@v1
       with:
         fetch-depth: 1
-    - uses: raftario/setup-rust-action@releases/v1
+    - uses: raftario/setup-rust-action@v1
     - name: Run tests
       run: cargo test -v
